@@ -55,3 +55,40 @@ resource "aws_route_table" "public" {
     Name = "${var.project_name}-public-rt"
   }
 }
+
+resource "aws_route_table_association" "public-rt-asoc" {
+  count =  length(aws_subnet.web_public_sub)
+  subnet_id = aws_subnet.web_public_sub[count.index].id
+  route_table_id = aws_route_table.public.id 
+}
+
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+  route = {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+  tags ={
+    Name = "${var.project_name}-private-rt"
+  }
+}
+
+resource "aws_route_table_association" "private-rt-asoc" {
+  count =  length(aws_subnet.app_pri_sub)
+  subnet_id = aws_subnet.app_pri_sub[count.index].id
+  route_table_id = aws_route_table.private.id 
+}
+
+resource "aws_route_table" "db_private" {
+    vpc_id = aws_vpc.main.id
+    tags ={
+    Name = "${var.project_name}-dbprivate-rt"
+  }
+}
+
+resource "aws_route_table_association" "dbprivate-rt-asoc" {
+  count =  length(aws_subnet.db_pri_sub)
+  subnet_id = aws_subnet.db_pri_sub[count.index].id
+  route_table_id = aws_route_table.db_private.id 
+}
