@@ -1,1 +1,1 @@
-# -highly-available-3-tier-architecture
+# highly-available-3-tier-architecture
