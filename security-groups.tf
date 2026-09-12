@@ -69,7 +69,7 @@ resource "aws_security_group" "app" {
     ]
   }
   
- egress = {
+ egress {
     description = "Database access"
     from_port = 3306
     to_port   = 3306
