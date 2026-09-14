@@ -103,4 +103,4 @@ terraform destroy
 
  ## Purpose
 
- This project demonstrates how **Terraform can be used to build and manage a secure, scalable, and highly available AWS environment as code**.
+ This project demonstrates how **Terraform can be used to build and manage a secure, scalable, and highly available AWS environment as code**..
