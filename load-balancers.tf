@@ -26,7 +26,7 @@ resource "aws_lb" "app" {
   name = "AppALB"
   internal = true
   load_balancer_type = "application"
-  security_groups = [aws_security_group.app.id ]
+  security_groups = [aws_security_group.app.id]
   subnets = [aws_subnet.app_pri_sub[count.index].id ]
 
   tags = {
