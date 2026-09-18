@@ -5,7 +5,7 @@ resource "aws_autoscaling_group" "web" {
  max_size = 3
 
  vpc_zone_identifier = [
-    aws_subnet.app_pri_sub[*].id
+    aws_subnet.web_public_sub[*].id
  ]
 
  target_group_arns = [ 
