@@ -63,7 +63,7 @@ resource "aws_launch_template" "web" {
 
 
 
-resource "aws_launch_template" "web" {
+resource "aws_launch_template" "app" {
     name = "${var.project_name}-AppLT"
     description = "Application tier launch template"
     image_id = "ami-091b599f5f318ddd2"
