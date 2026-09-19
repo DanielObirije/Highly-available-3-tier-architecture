@@ -1,5 +1,5 @@
 output "vpc_id" {
-  value = aws_vpc.project.id
+  value = aws_vpc.main.id
 }
 
 output "web_alb_dns_name" {

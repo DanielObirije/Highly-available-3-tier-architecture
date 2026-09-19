@@ -1,6 +1,6 @@
 data "aws_ami" "ubuntu_sql" {
   most_recent = true
-  owners      = ["061579646519"]
+  owners      = ["0635373732"]
 
   filter {
     name   = "image-id"

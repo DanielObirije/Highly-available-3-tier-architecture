@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "db_subnet" {
    name =  "${var.project_name}-dbsub"
-   subnet_ids = [ aws_subnet.db_pri_sub[*].id ]
+   subnet_ids =  aws_subnet.db_pri_sub[*].id 
    tags = {
     Name = "${var.project_name}-DBSub"
   }
@@ -19,7 +19,7 @@ resource "aws_db_instance" "main" {
     password = var.db_password
     port = 3306
     db_subnet_group_name = aws_db_subnet_group.db_subnet.name
-    vpc_security_group_ids = [ aws_security_group.db ]
+    vpc_security_group_ids =[aws_security_group.db.id]
     multi_az = false
     publicly_accessible = false
     backup_retention_period = 7

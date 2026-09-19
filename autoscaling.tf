@@ -4,9 +4,8 @@ resource "aws_autoscaling_group" "web" {
  desired_capacity = 2
  max_size = 3
 
- vpc_zone_identifier = [
-    aws_subnet.web_public_sub[*].id
- ]
+ vpc_zone_identifier = aws_subnet.web_public_sub[*].id
+ 
 
  target_group_arns = [ 
     aws_lb_target_group.web.arn
@@ -55,9 +54,8 @@ resource "aws_autoscaling_group" "app" {
  desired_capacity = 2
  max_size = 3
 
- vpc_zone_identifier = [
-    aws_subnet.app_pri_sub[*].id
- ]
+ vpc_zone_identifier = aws_subnet.app_pri_sub[*].id
+ 
 
  target_group_arns = [ 
     aws_lb_target_group.web.arn

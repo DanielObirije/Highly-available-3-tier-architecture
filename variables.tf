@@ -86,6 +86,7 @@ variable "db_password" {
   description = "RDS master password"
   type        = string
   sensitive   = true
+  default = "admin2551"
 }
 
 variable "db_instance_class" {

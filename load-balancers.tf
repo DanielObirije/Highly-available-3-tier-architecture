@@ -1,13 +1,12 @@
 resource "aws_lb" "web" {
- count = length(aws_subnet.web_public_sub)
   name = "WebALB"
   internal = false
   load_balancer_type = "application"
   security_groups = [aws_security_group.web.id ]
-  subnets = [aws_subnet.web_public_sub[count.index].id ]
+  subnets = aws_subnet.web_public_sub[*].id 
 
   tags = {
-     name = "${var.project_name}-WebALB-${count.index + 1}"
+     name = "${var.project_name}-WebALB"
   }
 }
 
@@ -22,15 +21,14 @@ resource "aws_lb_listener" "web" {
 }
 
 resource "aws_lb" "app" {
- count = length(aws_subnet.app_pri_sub)
   name = "AppALB"
   internal = true
   load_balancer_type = "application"
   security_groups = [aws_security_group.app.id]
-  subnets = [aws_subnet.app_pri_sub[count.index].id ]
+  subnets = aws_subnet.app_pri_sub[*].id 
 
   tags = {
-     name = "${var.project_name}-WebALB-${count.index + 1}"
+     name = "${var.project_name}-AppALB"
   }
 }
 

@@ -21,7 +21,7 @@ resource "aws_launch_template" "web" {
       create_before_destroy = true
     }
 
-    user_data = base64decode(
+    user_data = base64encode(
         <<-EOF
             #!/bin/bash
 
@@ -86,7 +86,7 @@ resource "aws_launch_template" "app" {
       create_before_destroy = true
     }
 
-    user_data = base64decode(
+    user_data = base64encode(
         <<-EOF
             #!/bin/bash
 
