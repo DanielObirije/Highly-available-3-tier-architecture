@@ -69,15 +69,15 @@ resource "aws_security_group" "app" {
     ]
   }
   
- egress {
-    description = "Database access"
-    from_port = 3306
-    to_port   = 3306
-    protocol = "tcp"
-    security_groups = [
-      aws_security_group.db.id
-    ]
- }
+#  egress {
+#     description = "Database access"
+#     from_port = 3306
+#     to_port   = 3306
+#     protocol = "tcp"
+#     security_groups = [
+#       aws_security_group.db.id
+#     ]
+#  }
  
  egress {
     description = "Internet through NAT"
@@ -103,7 +103,7 @@ resource "aws_security_group" "db" {
     protocol  = "tcp"
 
     security_groups = [
-        aws_security_group.web.id
+        aws_security_group.app.id
     ]
   }
 

@@ -58,14 +58,14 @@ resource "aws_autoscaling_group" "app" {
  
 
  target_group_arns = [ 
-    aws_lb_target_group.web.arn
+    aws_lb_target_group.app.arn
  ]
 
   health_check_type = "ELB"
   health_check_grace_period = 120
 
   launch_template {
-    id = aws_launch_template.web.id
+    id = aws_launch_template.app.id
     version = "$Latest"
   }
 
@@ -87,7 +87,7 @@ resource "aws_autoscaling_group" "app" {
 
 resource "aws_autoscaling_policy" "app_target_tracking" {
   name = "${var.project_name}-AppTargetTracking"
-  autoscaling_group_name = aws_autoscaling_group.web.name
+  autoscaling_group_name = aws_autoscaling_group.app.name
   policy_type =  "TargetTrackingScaling"
   target_tracking_configuration {
     predefined_metric_specification {

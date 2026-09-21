@@ -1,7 +1,8 @@
 resource "aws_launch_template" "web" {
     name = "${var.project_name}-WebLT"
     description = "Web tier launch template"
-    image_id = "ami-091b599f5f318ddd2"
+    image_id =  data.aws_ami.ubuntu.id
+
     instance_type = var.instance_type
     vpc_security_group_ids = [ aws_security_group.web.id ]
     network_interfaces {
@@ -66,12 +67,14 @@ resource "aws_launch_template" "web" {
 resource "aws_launch_template" "app" {
     name = "${var.project_name}-AppLT"
     description = "Application tier launch template"
-    image_id = "ami-091b599f5f318ddd2"
+    image_id =  data.aws_ami.ubuntu.id
+
     instance_type = var.instance_type
-    vpc_security_group_ids = [ aws_security_group.web.id ]
+    vpc_security_group_ids = [aws_security_group.app.id]
+    key_name = var.key_name
     network_interfaces {
       associate_carrier_ip_address = true
-      security_groups = [aws_security_group.web.id]
+      security_groups = [aws_security_group.app.id]
     }
 
     tag_specifications {
