@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "web" {
 
   tag {
    key      =  "Name"
-   value   = "${var.project_name}WebASG"
+   value   = "${var.project_name}-WebASG"
    propagate_at_launch = true
   }
 }

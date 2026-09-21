@@ -19,6 +19,7 @@ resource "aws_subnet" "web_public_sub" {
   count =  length(var.subnets.client)
   vpc_id = aws_vpc.main.id
   cidr_block = var.subnets.client[count.index]
+  availability_zone = var.availability_zones[count.index]
   map_public_ip_on_launch = true
   tags = {
      name = "${var.project_name}-web-public-${count.index + 1}-subnet"
@@ -29,6 +30,7 @@ resource "aws_subnet" "app_pri_sub" {
   count =  length(var.subnets.server)
   vpc_id = aws_vpc.main.id
   cidr_block = var.subnets.server[count.index]
+  availability_zone = var.availability_zones[count.index]
   map_public_ip_on_launch = false
   tags = {
      name = "${var.project_name}-app-public-${count.index + 1}-subnet"
@@ -39,6 +41,7 @@ resource "aws_subnet" "db_pri_sub" {
   count =  length(var.subnets.database)
   vpc_id = aws_vpc.main.id
   cidr_block = var.subnets.database[count.index]
+  availability_zone = var.availability_zones[count.index]
   map_public_ip_on_launch = false
   tags = {
      name = "${var.project_name}-db-private-${count.index + 1}-subnet"

@@ -5,10 +5,7 @@ resource "aws_launch_template" "web" {
 
     instance_type = var.instance_type
     vpc_security_group_ids = [ aws_security_group.web.id ]
-    network_interfaces {
-      associate_carrier_ip_address = true
-      security_groups = [aws_security_group.web.id]
-    }
+    key_name = var.key_name
 
     tag_specifications {
       resource_type = "instance"
@@ -72,10 +69,6 @@ resource "aws_launch_template" "app" {
     instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.app.id]
     key_name = var.key_name
-    network_interfaces {
-      associate_carrier_ip_address = true
-      security_groups = [aws_security_group.app.id]
-    }
 
     tag_specifications {
       resource_type = "instance"
