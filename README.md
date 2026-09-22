@@ -6,7 +6,7 @@
 
  ## Architecture
 
-![alt text](<highly available 3-tier AWS architecture.png>)
+![alt text](<highly available 3-tier AWS architecture-1.png>)
 
  ## How It Works
 
